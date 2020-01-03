@@ -16,6 +16,8 @@ namespace pcmonitor
         void GetProcessorInfo()
         {
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_Processor");
+           // HardwareMonitor monitor = new HardwareMonitor("Win32_Processor");
+            //monitor.GetInfo("Name");
             foreach (ManagementObject processorInfo in searcher.Get())
             {
                 processorName.Text += ($"{processorInfo["Name"]}");
