@@ -3,7 +3,7 @@ using System.IO;
 
 namespace pcmonitor
 {
-    class SystemInformation : SystemMonitor, IISystemInformation
+    class SystemInformation : SystemMonitor, ISystemInformation
     {
         private List<string[]> Collection;
         private readonly string source;

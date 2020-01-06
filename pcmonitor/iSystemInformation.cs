@@ -4,7 +4,7 @@ namespace pcmonitor
 {
     interface ISystemInformation
     {
-        List<string[]> ReadData() { }
-        void Save() { }
+        List<string[]> ReadData();
+        void Save();
     }
 }
