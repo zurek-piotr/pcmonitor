@@ -3,7 +3,7 @@ using System.IO;
 
 namespace pcmonitor
 {
-    class SystemInformation : SystemMonitor
+    class SystemInformation : SystemMonitor, IISystemInformation
     {
         private List<string[]> Collection;
         private readonly string source;
@@ -12,14 +12,14 @@ namespace pcmonitor
             this.source = source;
         }
 
-        override public List<string[]> ReadData() {
-            Collection = base.ReadData();
+        override public List<string[]> ReadData()
+        {
+            this.Collection = base.ReadData();
             return Collection;
         }
 
         public void Save()
         {
-            this.ReadData();
             using (StreamWriter sw = new StreamWriter($"{this.source}.txt"))
             {
                 foreach (string[] info in this.Collection)

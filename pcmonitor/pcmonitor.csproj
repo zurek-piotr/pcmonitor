@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ISystemInformation.cs" />
     <Compile Include="SystemInformation.cs" />
     <Compile Include="SystemMonitor.cs" />
     <Page Include="MainWindow.xaml">
