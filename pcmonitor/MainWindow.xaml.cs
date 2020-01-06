@@ -1,5 +1,7 @@
-﻿using System.Management;
+﻿using System.Collections.Generic;
+using System.Management;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace pcmonitor
 {
@@ -13,22 +15,41 @@ namespace pcmonitor
             InitializeComponent();
         }
 
-        void GetProcessorInfo()
+        private void Procesor_Loaded(object sender, RoutedEventArgs e)
         {
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_Processor");
-           // HardwareMonitor monitor = new HardwareMonitor("Win32_Processor");
-            //monitor.GetInfo("Name");
-            foreach (ManagementObject processorInfo in searcher.Get())
+            SystemInformation processor = new SystemInformation("Win32_Processor");
+            List<string[]> data = processor.ReadData();
+            foreach (string[] info in data)
             {
-                processorName.Text += ($"{processorInfo["Name"]}");
-                processorCores.Text += ($"{processorInfo["NumberOfCores"]}");
+                processorInfo.Items.Add(new ViewListItem { Name = info[0], Property = info[1] });
             }
-            
-            
         }
-        private void Info_Loaded(object sender, RoutedEventArgs e)
+        private void Disks_Loaded(object sender, RoutedEventArgs e)
         {
-            GetProcessorInfo();
+            SystemInformation disks = new SystemInformation("Win32_DiskDrive");
+            List<string[]> data = disks.ReadData();
+            foreach (string[] info in data)
+            {
+                disksInfo.Items.Add(new ViewListItem { Name = info[0], Property = info[1] });
+            }
         }
+
+        private void processorSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            SystemInformation processor = new SystemInformation("Win32_Processor");
+            processor.Save();
+        }
+
+        private void DisksSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            SystemInformation disks = new SystemInformation("Win32_DiskDrive");
+            disks.Save();
+        }
+    }
+
+    internal class ViewListItem
+    {
+        public string Name { get; set; }
+        public string Property { get; set; }
     }
 }
