@@ -22,7 +22,7 @@ namespace pcmonitor
                 {
                     if (data.Value != null && data.Value.ToString() != "")
                     {
-                        values = new string[] { $"{data.Name}", $"{data.Value}"};
+                        values = new string[] { $"{data.Name}", $"{data.Value}" };
                         CollectionData.Add(values);
                     }
                     continue;

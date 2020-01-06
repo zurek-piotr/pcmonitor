@@ -9,38 +9,42 @@ namespace pcmonitor
     /// </summary>
     public partial class MainWindow : Window
     {
+        SystemInformation processor;
+        SystemInformation disks;
+
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void LoadData(string source, ListView view) {
+        private SystemInformation LoadData(string source, ListView view)
+        {
             SystemInformation informations = new SystemInformation(source);
             List<string[]> data = informations.ReadData();
             foreach (string[] info in data)
             {
                 view.Items.Add(new ViewListItem { Name = info[0], Property = info[1] });
             }
+            return informations;
         }
 
         private void Processor_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadData("Win32_Processor", processorInfo);
+            processor = LoadData("Win32_Processor", processorInfo);
         }
         private void Disks_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadData("Win32_DiskDrive", disksInfo);
+            disks = LoadData("Win32_DiskDrive", disksInfo);
         }
 
         private void ProcessorSaveButton_Click(object sender, RoutedEventArgs e)
         {
-            SystemInformation processor = new SystemInformation("Win32_Processor");
             processor.Save();
         }
 
         private void DisksSaveButton_Click(object sender, RoutedEventArgs e)
         {
-            SystemInformation disks = new SystemInformation("Win32_DiskDrive");
             disks.Save();
         }
     }
