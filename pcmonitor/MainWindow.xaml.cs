@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace pcmonitor
 {
@@ -13,23 +14,22 @@ namespace pcmonitor
             InitializeComponent();
         }
 
-        private void Processor_Loaded(object sender, RoutedEventArgs e)
-        {
-            SystemInformation processor = new SystemInformation("Win32_Processor");
-            List<string[]> data = processor.ReadData();
+        private void LoadData(string source, ListView view) {
+            SystemInformation informations = new SystemInformation(source);
+            List<string[]> data = informations.ReadData();
             foreach (string[] info in data)
             {
-                processorInfo.Items.Add(new ViewListItem { Name = info[0], Property = info[1] });
+                view.Items.Add(new ViewListItem { Name = info[0], Property = info[1] });
             }
+        }
+
+        private void Processor_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadData("Win32_Processor", processorInfo);
         }
         private void Disks_Loaded(object sender, RoutedEventArgs e)
         {
-            SystemInformation disks = new SystemInformation("Win32_DiskDrive");
-            List<string[]> data = disks.ReadData();
-            foreach (string[] info in data)
-            {
-                disksInfo.Items.Add(new ViewListItem { Name = info[0], Property = info[1] });
-            }
+            LoadData("Win32_DiskDrive", disksInfo);
         }
 
         private void ProcessorSaveButton_Click(object sender, RoutedEventArgs e)
