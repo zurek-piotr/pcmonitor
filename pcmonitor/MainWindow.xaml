@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pcmonitor"
         mc:Ignorable="d"
-        Title="PC Monitor" Height="486.41" Width="800">
+        Title="PC Monitor" Height="500" Width="500">
     <Grid>
-        <TabControl HorizontalAlignment="Left" Margin="10,10,0,10.333" Width="773">
-            <TabItem x:Name="Procesor" Header="Procesor" Loaded="Procesor_Loaded">
+        <TabControl Margin="10,10,10.333,10.667">
+            
+            <TabItem x:Name="Processor" Header="Processor" Loaded="Processor_Loaded">
                 <Grid Background="#FFE5E5E5">
-                    <ListView x:Name="processorInfo" HorizontalAlignment="Left" Height="353" Margin="10,10,0,0" VerticalAlignment="Top" Width="747" >
+                    <ListView x:Name="processorInfo" Margin="10,10,9.667,58.333" >
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
@@ -18,24 +19,24 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button x:Name="processorSaveButton" Content="Save Information" HorizontalAlignment="Left" Margin="637,381,0,0" VerticalAlignment="Top" Width="120" Click="processorSaveButton_Click"/>
+                    <Button x:Name="ProcessorSaveButton" Content="Save Information" Margin="0,0,9.667,19.333" Click="ProcessorSaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="Disks" Header="Disks" Loaded="Disks_Loaded">
+                <Grid Background="#FFE5E5E5">
+                    <ListView x:Name="disksInfo" Margin="10,10,9.667,58.333" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Property" DisplayMemberBinding="{Binding Property}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="DisksSaveButton" Content="Save Information" Margin="0,0,9.667,19.333" Click="DisksSaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
                 </Grid>
             </TabItem>
             
-            <TabItem x:Name="Disks" Header="Disks" Loaded="Disks_Loaded">
-                <Grid Background="#FFE5E5E5">
-                    <ListView x:Name="disksInfo" HorizontalAlignment="Left" Height="353" Margin="10,10,0,0" VerticalAlignment="Top" Width="747" >
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Property" DisplayMemberBinding="{Binding Property}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <Button x:Name="DisksSaveButton" Content="Save Information" HorizontalAlignment="Left" Margin="637,381,0,0" VerticalAlignment="Top" Width="120" Click="DisksSaveButton_Click"/>
-
-                </Grid>
-            </TabItem>
         </TabControl>
 
     </Grid>

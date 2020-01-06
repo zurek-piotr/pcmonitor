@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Management;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace pcmonitor
 {
@@ -15,7 +13,7 @@ namespace pcmonitor
             InitializeComponent();
         }
 
-        private void Procesor_Loaded(object sender, RoutedEventArgs e)
+        private void Processor_Loaded(object sender, RoutedEventArgs e)
         {
             SystemInformation processor = new SystemInformation("Win32_Processor");
             List<string[]> data = processor.ReadData();
@@ -34,7 +32,7 @@ namespace pcmonitor
             }
         }
 
-        private void processorSaveButton_Click(object sender, RoutedEventArgs e)
+        private void ProcessorSaveButton_Click(object sender, RoutedEventArgs e)
         {
             SystemInformation processor = new SystemInformation("Win32_Processor");
             processor.Save();
