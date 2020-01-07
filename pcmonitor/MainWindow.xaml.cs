@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,13 +12,17 @@ namespace pcmonitor
     /// </summary>
     public partial class MainWindow : Window
     {
+        internal class ViewListItem
+        {
+            public string Name { get; set; }
+            public string Property { get; set; }
+            public string GroupHeader { get; set; }
+        }
+
         private SystemInformation processor;
         private SystemInformation disks;
         private SystemInformation memory;
         private SystemInformation network;
-
-        public Color backColor;
-
 
         public MainWindow()
         {
@@ -26,23 +31,49 @@ namespace pcmonitor
 
         private SystemInformation LoadData(string source, ListView view)
         {
-            SystemInformation informations = new SystemInformation(source);
-            List<string[]> data = informations.ReadData();
-            List<ViewListItem> items = new List<ViewListItem>();
-
-            foreach (string[] info in data)
+            try
             {
 
-                items.Add(new ViewListItem { Name = info[0], Property = info[1], GroupHeader = info[2] });
+                SystemInformation informations = new SystemInformation(source);
+                List<string[]> data = informations.ReadData();
+
+                try
+                {
+
+                    List<ViewListItem> items = new List<ViewListItem>();
+
+                    foreach (string[] info in data)
+                    {
+
+                        items.Add(new ViewListItem { Name = info[0], Property = info[1], GroupHeader = info[2] });
+
+                    }
+
+                    view.ItemsSource = items;
+                    CollectionView cView = (CollectionView)CollectionViewSource.GetDefaultView(view.ItemsSource);
+                    PropertyGroupDescription groupDescription = new PropertyGroupDescription("GroupHeader");
+                    cView.GroupDescriptions.Add(groupDescription);
+
+                }
+                catch (System.Exception)
+                {
+
+                    MessageBox.Show("Program encountered problem while adding information to table.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    throw;
+
+                }
+
+                return informations;
+
+            }
+            catch (System.Exception)
+            {
+
+                MessageBox.Show("Program encountered problem while retrieving information.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
 
             }
 
-            view.ItemsSource = items;
-            CollectionView cView = (CollectionView)CollectionViewSource.GetDefaultView(view.ItemsSource);
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("GroupHeader");
-            cView.GroupDescriptions.Add(groupDescription);
-
-            return informations;
         }
 
         private void Processor_Loaded(object sender, RoutedEventArgs e)
@@ -64,28 +95,26 @@ namespace pcmonitor
 
         private void ProcessorSaveButton_Click(object sender, RoutedEventArgs e)
         {
-            processor.Save();
+            Thread thread = new Thread(processor.Save);
+            thread.Start();
         }
 
         private void DisksSaveButton_Click(object sender, RoutedEventArgs e)
         {
-            disks.Save();
+            Thread thread = new Thread(disks.Save);
+            thread.Start();
         }
 
         private void MemorySaveButton_Click(object sender, RoutedEventArgs e)
         {
-            memory.Save();
+            Thread thread = new Thread(memory.Save);
+            thread.Start();
         }
         private void NetworkSaveButton_Click(object sender, RoutedEventArgs e)
         {
-            network.Save();
+            Thread thread = new Thread(network.Save);
+            thread.Start();
         }
     }
 
-    internal class ViewListItem
-    {
-        public string Name { get; set; }
-        public string Property { get; set; }
-        public string GroupHeader { get; set; }
-    }
 }
