@@ -36,7 +36,34 @@
                     <Button x:Name="DisksSaveButton" Content="Save Information" Margin="0,0,9.667,19.333" Click="DisksSaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
                 </Grid>
             </TabItem>
-            
+
+            <TabItem x:Name="Memory" Header="Memory" Loaded="Memory_Loaded">
+                <Grid Background="#FFE5E5E5">
+                    <ListView x:Name="memoryInfo" Margin="10,10,9.667,58.333" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Property" DisplayMemberBinding="{Binding Property}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="MemorySaveButton" Content="Save Information" Margin="0,0,9.667,19.333" Click="MemorySaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="Network" Header="Network" Loaded="Network_Loaded">
+                <Grid Background="#FFE5E5E5">
+                    <ListView x:Name="networkInfo" Margin="10,10,9.667,58.333" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Property" DisplayMemberBinding="{Binding Property}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="NetworkSaveButton" Content="Save Information" Margin="0,0,9.667,19.333" Click="NetworkSaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
+                </Grid>
+            </TabItem>
         </TabControl>
 
     </Grid>
