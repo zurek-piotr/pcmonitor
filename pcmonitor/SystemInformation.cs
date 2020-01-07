@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Windows;
 
 namespace pcmonitor
 {
@@ -20,13 +21,23 @@ namespace pcmonitor
 
         public void Save()
         {
-            using (StreamWriter sw = new StreamWriter($"{this.source}.txt"))
+            try
             {
-                foreach (string[] info in this.Collection)
+                using (StreamWriter sw = new StreamWriter($"{this.source}.txt"))
                 {
-                    sw.WriteLine($"{info[0]} - {info[1]}");
+                    foreach (string[] info in this.Collection)
+                    {
+                        sw.WriteLine($"{info[0]} - {info[1]}");
+                    }
                 }
+                MessageBox.Show("Informations saved in file.", "Saving informations.", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            catch (System.Exception)
+            {
+                MessageBox.Show("Program encountered problem saving informations.", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
+            }
+            
         }
     }
 }

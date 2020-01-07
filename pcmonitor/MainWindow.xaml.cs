@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace pcmonitor
 {
@@ -14,9 +13,6 @@ namespace pcmonitor
         SystemInformation disks;
         SystemInformation memory;
         SystemInformation network;
-
-        public Color backColor;
-
 
         public MainWindow()
         {
