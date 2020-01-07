@@ -22,9 +22,15 @@ namespace pcmonitor
         {
             using (StreamWriter sw = new StreamWriter($"{this.source}.txt"))
             {
+                string GroupHeader = "";
                 foreach (string[] info in this.Collection)
                 {
+                    if (info[2] != GroupHeader)
+                    {
+                        sw.WriteLine($"\n### {info[2]} ###\n");
+                    }
                     sw.WriteLine($"{info[0]} - {info[1]}");
+                    GroupHeader = info[2];
                 }
             }
         }

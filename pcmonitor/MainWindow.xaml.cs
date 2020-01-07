@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace pcmonitor
@@ -10,10 +11,10 @@ namespace pcmonitor
     /// </summary>
     public partial class MainWindow : Window
     {
-        SystemInformation processor;
-        SystemInformation disks;
-        SystemInformation memory;
-        SystemInformation network;
+        private SystemInformation processor;
+        private SystemInformation disks;
+        private SystemInformation memory;
+        private SystemInformation network;
 
         public Color backColor;
 
@@ -27,12 +28,20 @@ namespace pcmonitor
         {
             SystemInformation informations = new SystemInformation(source);
             List<string[]> data = informations.ReadData();
+            List<ViewListItem> items = new List<ViewListItem>();
+
             foreach (string[] info in data)
             {
-                
-                view.Items.Add(new ViewListItem { Name = info[0], Property = info[1] });
+
+                items.Add(new ViewListItem { Name = info[0], Property = info[1], GroupHeader = info[2] });
 
             }
+
+            view.ItemsSource = items;
+            CollectionView cView = (CollectionView)CollectionViewSource.GetDefaultView(view.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("GroupHeader");
+            cView.GroupDescriptions.Add(groupDescription);
+
             return informations;
         }
 
@@ -77,5 +86,6 @@ namespace pcmonitor
     {
         public string Name { get; set; }
         public string Property { get; set; }
+        public string GroupHeader { get; set; }
     }
 }

@@ -15,14 +15,15 @@ namespace pcmonitor
         virtual public List<string[]> ReadData()
         {
             List<string[]> CollectionData = new List<string[]>();
-            string[] values = new string[2];
+            string[] values;
             foreach (ManagementObject info in this.searcher.Get())
             {
                 foreach (PropertyData data in info.Properties)
                 {
+
                     if (data.Value != null && data.Value.ToString() != "")
                     {
-                        values = new string[] { $"{data.Name}", $"{data.Value}" };
+                        values = new string[3] { $"{data.Name}", $"{data.Value}", $"{info["Name"]}" };
                         CollectionData.Add(values);
                     }
                     continue;
