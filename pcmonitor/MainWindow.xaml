@@ -11,8 +11,8 @@
 
             <TabItem x:Name="Processor" Header="Processor" Loaded="Processor_Loaded">
                 <Grid Background="#FFE5E5E5">
-                    <ListView x:Name="processorInfo" Margin="10,10,9.667,58.333" >
-                        
+                    <ListView x:Name="processorInfo" Margin="10,10,10,60" >
+
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
@@ -31,14 +31,14 @@
                         </ListView.GroupStyle>
 
                     </ListView>
-                    <Button x:Name="ProcessorSaveButton" Content="Save Information" Margin="0,0,9.667,19.333" Click="ProcessorSaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
+                    <Button x:Name="ProcessorSaveButton" Content="Save Information" Margin="0,0,10,20" Click="ProcessorSaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
                 </Grid>
             </TabItem>
 
             <TabItem x:Name="Disks" Header="Disks" Loaded="Disks_Loaded">
                 <Grid Background="#FFE5E5E5">
-                    <ListView x:Name="disksInfo" Margin="10,10,9.667,58.333" >
-                        
+                    <ListView x:Name="disksInfo" Margin="10,10,10,60" >
+
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
@@ -57,14 +57,14 @@
                         </ListView.GroupStyle>
 
                     </ListView>
-                    <Button x:Name="DisksSaveButton" Content="Save Information" Margin="0,0,9.667,19.333" Click="DisksSaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
+                    <Button x:Name="DisksSaveButton" Content="Save Information" Margin="0,0,10,20" Click="DisksSaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
                 </Grid>
             </TabItem>
 
             <TabItem x:Name="Memory" Header="Memory" Loaded="Memory_Loaded">
                 <Grid Background="#FFE5E5E5">
-                    <ListView x:Name="memoryInfo" Margin="10,10,9.667,58.333" >
-                        
+                    <ListView x:Name="memoryInfo" Margin="10,10,10,60" >
+
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
@@ -83,14 +83,14 @@
                         </ListView.GroupStyle>
 
                     </ListView>
-                    <Button x:Name="MemorySaveButton" Content="Save Information" Margin="0,0,9.667,19.333" Click="MemorySaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
+                    <Button x:Name="MemorySaveButton" Content="Save Information" Margin="0,0,10,20" Click="MemorySaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
                 </Grid>
             </TabItem>
 
             <TabItem x:Name="Network" Header="Network" Loaded="Network_Loaded">
                 <Grid Background="#FFE5E5E5">
-                    <ListView x:Name="networkInfo" Margin="10,10,9.667,58.333" >
-                        
+                    <ListView x:Name="networkInfo" Margin="10,10,10,60" >
+
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
@@ -109,9 +109,22 @@
                         </ListView.GroupStyle>
 
                     </ListView>
-                    <Button x:Name="NetworkSaveButton" Content="Save Information" Margin="0,0,9.667,19.333" Click="NetworkSaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
+                    <Button x:Name="NetworkSaveButton" Content="Save Information" Margin="0,0,10,20" Click="NetworkSaveButton_Click" RenderTransformOrigin="0.324,0.082" HorizontalAlignment="Right" Width="120" Height="21" VerticalAlignment="Bottom"/>
                 </Grid>
             </TabItem>
+
+            <TabItem x:Name="About" Header="About" >
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="121*"/>
+                        <ColumnDefinition Width="112*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Authors:" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" Width="120" Grid.ColumnSpan="2" Margin="0,50,0,0"/>
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Piotr Żurek"/><LineBreak/><Run/><LineBreak/><Run Text="Patryk Perkiewicz"/><LineBreak/><Run/><LineBreak/><Run Text="Paweł Słowiński"/></TextBlock>
+
+                </Grid>
+            </TabItem>
+
         </TabControl>
 
     </Grid>
