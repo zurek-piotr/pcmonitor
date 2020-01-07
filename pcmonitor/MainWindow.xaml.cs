@@ -95,25 +95,21 @@ namespace pcmonitor
 
         private void ProcessorSaveButton_Click(object sender, RoutedEventArgs e)
         {
-            Thread thread = new Thread(processor.Save);
-            thread.Start();
+            new Thread(processor.Save).Start();
         }
 
         private void DisksSaveButton_Click(object sender, RoutedEventArgs e)
         {
-            Thread thread = new Thread(disks.Save);
-            thread.Start();
+            new Thread(disks.Save).Start();
         }
 
         private void MemorySaveButton_Click(object sender, RoutedEventArgs e)
         {
-            Thread thread = new Thread(memory.Save);
-            thread.Start();
+            new Thread(memory.Save).Start();
         }
         private void NetworkSaveButton_Click(object sender, RoutedEventArgs e)
         {
-            Thread thread = new Thread(network.Save);
-            thread.Start();
+            new Thread(network.Save).Start();
         }
     }
 
